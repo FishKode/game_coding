@@ -1,0 +1,142 @@
+application: blockly-games
+version: beta
+runtime: python27
+api_version: 1
+threadsafe: no
+# App Engine default is 10m.
+default_expiration: "12h"
+
+handlers:
+# Storage API.
+- url: /storage
+  script: storage.py
+  secure: always
+- url: /storage\.js
+  static_files: storage.js
+  upload: storage\.js
+  secure: always
+
+# Index page.
+- url: /
+  static_files: index.html
+  upload: index\.html
+  secure: always
+- url: /index/
+  static_dir: index
+  secure: always
+
+# About page.
+- url: /about
+  static_files: about.html
+  upload: about\.html
+  secure: always
+
+# Debug page.
+- url: /debug
+  static_files: debug.html
+  upload: debug\.html
+  secure: always
+
+# Bird app.
+- url: /bird
+  static_files: bird.html
+  upload: bird\.html
+  secure: always
+- url: /bird/
+  static_dir: bird
+  secure: always
+
+# Maze app.
+- url: /maze
+  static_files: maze.html
+  upload: maze\.html
+  secure: always
+- url: /maze/
+  static_dir: maze
+  secure: always
+
+# Maze2 app.
+- url: /maze2
+  static_files: maze2.html
+  upload: maze2\.html
+  secure: always
+- url: /maze2/
+  static_dir: maze2
+  secure: always
+
+# Maze3 app.
+- url: /maze3
+  static_files: maze3.html
+  upload: maze3\.html
+  secure: always
+- url: /maze3/
+  static_dir: maze3
+  secure: always
+
+# Maze4 app.
+- url: /maze4
+  static_files: maze4.html
+  upload: maze4\.html
+  secure: always
+- url: /maze4/
+  static_dir: maze4
+  secure: always
+
+# Shared files.
+- url: /common
+  static_dir: common
+  secure: always
+- url: /js
+  static_dir: js
+  secure: always
+- url: /generated
+  static_dir: generated
+  secure: always
+- url: /third-party/
+  static_dir: third-party
+  secure: always
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+  secure: always
+  expiration: "30d"
+- url: /apple-touch-icon\.png
+  static_files: apple-touch-icon.png
+  upload: apple-touch-icon\.png
+  secure: always
+  expiration: "30d"
+- url: /robots\.txt
+  static_files: robots.txt
+  upload: robots\.txt
+  secure: always
+- url: /thumb
+  script: reddit.py
+  secure: always
+
+# Source files and uncompiled versions.
+skip_files:
+# App Engine default patterns.
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+# Custom skip patterns.
+- ^\w+/sources/.*$
+- ^third-party/ace/snippets/.*$
+- ^third-party/blockly/appengine/.*$
+- ^third-party/blockly/demos/.*$
+- ^third-party/blockly/generators/dart.*$
+- ^third-party/blockly/generators/lua.*$
+- ^third-party/blockly/generators/php.*$
+- ^third-party/blockly/generators/python.*$
+- ^third-party/blockly/i18n/.*$
+- ^third-party/blockly/msg/json/.*$
+- ^third-party/blockly/tests/.*$
+- ^third-party/midi-js/.*$
+- ^third-party/midi-js-soundfonts/.+[012567]\.mp3*$
+- ^third-party/midi-js-soundfonts/.+b[34]\.mp3*$
+- ^third-party/third_party_goog/.*$
+- ^third-party/JS-Interpreter/[^c].*$  # Only serve compiled.js.
+- ^.+\.soy$
+- ^.+\.md$
